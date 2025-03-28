@@ -1,0 +1,128 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.MobileTechnologyStrategyModel
+@{
+    ViewData["Title"] = "Mobile technology strategy";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>Optimising technology for a fragmented platform market</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question53">Technology used to support mobile app development</a></li>
+                        <li><a href="/Dashboard/Questions/Question49">Support for mobile Operating Systems currently</a></li>
+                        <li><a href="/Dashboard/Questions/Question50">Support for mobile Operating Systems in future</a></li>
+                        <li><a href="/Dashboard/Questions/Question51">Prominence of mobile Operating Systems</a></li>
+                        <li><a href="/Dashboard/Questions/Question54">Planned technology to support mobile app development</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/mobile-technology-strategy.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-code"></i>
+            <div class="count">Java</div>
+            <div class="title">Most used technology for mobile app development</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fab fa-android"></i>
+            <div class="count">Android</div>
+            <div class="title">Number 1 mobile device platform</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fab fa-apple"></i>
+            <div class="count">Apple</div>
+            <div class="title">Most prominent mobile device platform</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>Mobile is a fragmented platform market, with organisations at least supporting Google Android and Apple iOS, and that presents challenges. When building a few apps, it has been possible to run multiple platform specific teams. However, as more apps are demanded, this approach is not the most efficient. IT functions are looking to technologies such as HTML5 that enable them to be faster and more efficient.</p>
+        <p>In addition, mobile development has matured and there are investments in tools and services that cover testing, security and app capabilities. Some of these are being delivered via the Cloud. Platform fragmentation will possibly continue as organisations begin to embrace Internet of Things.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/case-studies/city-furniture-mobile-transformation/">
+                <h4 class="list-group-item-heading">City Furniture Mobile Transformation</h4>
+                <p class="list-group-item-text">Case study</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/achieving-mobile-app-development-success-with-hybrid-cloud/">
+                <h4 class="list-group-item-heading">Achieving Mobile App Development Success with Hybrid Cloud</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

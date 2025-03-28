@@ -1,0 +1,126 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.CloudModel
+@{
+    ViewData["Title"] = "Cloud";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>Embracing a multi-cloud, hybrid-cloud world</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question5">Cloud vendors used and in what capacity</a></li>
+                        <li><a href="/Dashboard/Questions/Question8">Key attributes of a Cloud platform</a></li>
+                        <li><a href="/Dashboard/Questions/Question45">Cloud as part of an organisation’s mobile or testing toolset</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/cloud.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fab fa-aws"></i>
+            <div class="count">AWS</div>
+            <div class="title">Most popular Cloud vendor</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-line"></i>
+            <div class="count">58%</div>
+            <div class="title">Of organisations are using Cloud</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-list-ol"></i>
+            @*<div class="count"></div>*@
+            <div class="title">Availability, services, support for 3rd parties</div>
+            <div class="desc">Most important attributes of a Cloud</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>Over half of enterprises are already running workloads in the Cloud and this will continue to rise as organisations become more comfortable with the platform. However, many will continue to run a mix of traditional on-premise and public Cloud workloads. In addition, most are choosing multiple public Clouds. IT will therefore need to establish the right environment and tooling to manage a hybrid-Cloud, multi-Cloud world.</p>
+        <p>When assessing Cloud, the key attributes are availability, services (storage, network, compute) and support for third party services. Cloud is not just a development platform but is increasingly part of toolchains, with support for processes such as DevOps.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/case-studies/swisscom-innovation-labs-can-identify-what-digital-transformation-success-entails/">
+                <h4 class="list-group-item-heading">Swisscom: Innovation labs can identify what digital transformation success entails</h4>
+                <p class="list-group-item-text">Case study</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/podcasts-and-videos/where-next-for-cloud-in-europe/">
+                <h4 class="list-group-item-heading">Where next for cloud in Europe?</h4>
+                <p class="list-group-item-text">Podcast</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

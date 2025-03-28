@@ -1,0 +1,184 @@
+﻿@page
+@model DataDashboardWeb.Pages.Administration.UserManagementModel
+@{
+    ViewData["Title"] = "User Management";
+    Layout = "~/Pages/_AdminLayout.cshtml";
+}
+
+<h2>User Management</h2>
+
+@if (string.IsNullOrWhiteSpace(Model.SuccessMessage) == false)
+{
+    <div class="alert alert-success" role="alert">@Model.SuccessMessage</div>
+}
+@if (string.IsNullOrWhiteSpace(Model.ErrorMessage) == false)
+{
+    <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+}
+
+<form method="post" id="payment-form" class="form-horizontal">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="well bs-component">
+
+                <fieldset>
+                    <legend>New User</legend>
+
+                    <div class="form-group">
+                        <label asp-for="UserForm.FirstName" class="col-lg-3 control-label">First Name</label>
+                        <div class="col-lg-9">
+                            <input type="text" asp-for="UserForm.FirstName" class="form-control" placeholder="First Name">
+                            <span class="label label-warning" asp-validation-for="UserForm.FirstName"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserForm.LastName" class="col-lg-3 control-label">Last Name</label>
+                        <div class="col-lg-9">
+                            <input type="text" asp-for="UserForm.LastName" class="form-control" placeholder="Last Name">
+                            <span class="label label-warning" asp-validation-for="UserForm.LastName"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserForm.Email" class="col-lg-3 control-label">Email</label>
+                        <div class="col-lg-9">
+                            <input type="email" asp-for="UserForm.Email" class="form-control" placeholder="Email">
+                            <span class="label label-warning" asp-validation-for="UserForm.Email"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserForm.Role" class="col-lg-3 control-label">Role</label>
+                        <div class="col-lg-9">
+                            <select class="form-control" asp-for="UserForm.Role">
+                                <option>subscriber</option>
+                                <option>administrator</option>
+                                <option>sales</option>
+                            </select>
+                            <span class="label label-warning" asp-validation-for="UserForm.Role"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-9">
+                            <button type="submit" class="btn btn-default" asp-page-handler="CreateUser">Create User</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            <div class="well bs-component">
+
+                <fieldset>
+                    <legend>Delete User</legend>
+
+                    <div class="form-group">
+                        <label asp-for="DeleteUserForm.Email" class="col-lg-3 control-label">Email</label>
+                        <div class="col-lg-9">
+                            <input type="email" asp-for="DeleteUserForm.Email" class="form-control" placeholder="Email">
+                            <span class="label label-warning" asp-validation-for="DeleteUserForm.Email"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-9">
+                            <button type="submit" class="btn btn-default" asp-page-handler="DeleteUser">Delete User</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="well bs-component">
+
+                <fieldset>
+                    <legend>New Subscription</legend>
+
+                    <div class="form-group">
+                        <label asp-for="SubscriptionForm.Email" class="col-lg-3 control-label">Email</label>
+                        <div class="col-lg-9">
+                            <input type="text" asp-for="SubscriptionForm.Email" class="form-control" placeholder="Email">
+                            <span class="label label-warning" asp-validation-for="UserForm.Email"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SubscriptionForm.PaymentReference" class="col-lg-3 control-label">Reference</label>
+                        <div class="col-lg-9">
+                            <input type="text" asp-for="SubscriptionForm.PaymentReference" class="form-control" placeholder="Stripe reference">
+                            <span class="label label-warning" asp-validation-for="SubscriptionForm.PaymentReference"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SubscriptionForm.PaymentAmount" class="col-lg-3 control-label">Amount</label>
+                        <div class="col-lg-9">
+                            <input type="number" asp-for="SubscriptionForm.PaymentAmount" class="form-control" placeholder="Must be greater than zero">
+                            <span class="label label-warning" asp-validation-for="SubscriptionForm.PaymentAmount"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SubscriptionForm.EnquiryAllocation" class="col-lg-3 control-label">Enquiry Allocation</label>
+                        <div class="col-lg-9">
+                            <input type="number" asp-for="SubscriptionForm.EnquiryAllocation" class="form-control" placeholder="Number of enquiries allocated">
+                            <span class="label label-warning" asp-validation-for="SubscriptionForm.EnquiryAllocation"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-9">
+                            <button type="submit" class="btn btn-default" asp-page-handler="CreateSubscription">Create Subscription</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-9">
+                            <button type="submit" class="btn btn-default" asp-page-handler="CreateUserAndSubscription">Create User + Subscription</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+    // Extend range validator method to treat checkboxes differently ///////////////////////////////////////
+    // This is so that the ASP.NET validation works with checkboxes
+    var defaultRangeValidator = $.validator.methods.range;
+    $.validator.methods.range = function (value, element, param) {
+        if (element.type === 'checkbox') {
+            // if it's a checkbox return true if it is checked
+            return element.checked;
+        } else {
+            // otherwise run the default validation function
+            return defaultRangeValidator.call(this, value, element, param);
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    </script>
+
+}

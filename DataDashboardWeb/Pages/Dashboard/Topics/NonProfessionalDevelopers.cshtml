@@ -1,0 +1,131 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.NonProfessionalDevelopersModel
+@{
+    ViewData["Title"] = "Non-professional developers";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>Enabling the modern workforce to support IT</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question21">Interest in enabling non-professional developers to build applications</a></li>
+                        <li><a href="/Dashboard/Questions/Question22">Benefits of non-professional developers to an organisation</a></li>
+                        <li><a href="/Dashboard/Questions/Question23">Challenges to adopting tools used by non-professional developers</a></li>
+                        <li><a href="/Dashboard/Questions/Question29">Benefits to adopting tools used by non-professional developers</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/non-professional-developers.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-hashtag"></i>
+            <div class="count">72%</div>
+            <div class="title">Of enterprises want to empower non-professional developers</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-tachometer-alt"></i>
+            <div class="count">Speed</div>
+            <div class="title">Number 1 reason to use non-professional developers is faster development</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-list-ol"></i>
+            @*<div class="count"></div>*@
+            <div class="title">Speed, reduced costs, and better security</div>
+            <div class="desc">Top 3 reasons to use tools designed for non-professional developers</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>A shortage of professional developers and increasing demand for solutions to support Digital Transformation initiatives means that organisations need to use resources better but also look to supplement them. One area is non-professional developers – who have existed for some time, building applications out of Excel or Access</p>
+        <p>By empowering these individuals using the right tools and support from IT, an organisation can foster more innovation and deliver more solutions that add value to the business. The best way to do this, is to put in place an IT foundation on which non-professional and professional developers can rapidly develop applications that do not sacrifice security, IP or quality.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/devops-and-agile/low-code-is-on-the-rise-but-can-it-deliver/">
+                <h4 class="list-group-item-heading">Low-code is on the rise, but can it deliver?</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/the-market-realities-of-digital-transformation/">
+                <h4 class="list-group-item-heading">The Market Realities of Digital Transformation</h4>
+                <p class="list-group-item-text">Commentary</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/user-experience/bmc-user-experience-ux-lessons-that-impact-the-delivery-of-business-value/">
+                <h4 class="list-group-item-heading">BMC: User Experience (UX) lessons that impact the delivery of business value</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

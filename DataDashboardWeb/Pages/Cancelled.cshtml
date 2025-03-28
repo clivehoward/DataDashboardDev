@@ -1,0 +1,29 @@
+﻿@page
+@model DataDashboardWeb.Pages.CancelledModel
+@{
+    ViewData["Title"] = "Cancelled";
+    ViewData["MetaDescription"] = "We are sorry that you have decided to cancel your subscription and hope that you will come back again.";
+}
+
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <h1>Sorry</h1>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <h3>We are sorry that you have decided to cancel your subscription and hope that you will come back again.</h3>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

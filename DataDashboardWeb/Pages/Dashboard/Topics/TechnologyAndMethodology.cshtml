@@ -1,0 +1,129 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.TechnologyAndMethodologyModel
+@{
+    ViewData["Title"] = "Technology and methodology";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>Process and technology to support the digital enterprise</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question1">Application development technology - owners and influencers</a></li>
+                        <li><a href="/Dashboard/Questions/Question28">Types of application development tools used to support Digital Transformation</a></li>
+                        <li><a href="/Dashboard/Questions/Question7">Predominant technologies used in application development</a></li>
+                        <li><a href="/Dashboard/Questions/Question33">Usage of application development technologies</a></li>
+                        <li><a href="/Dashboard/Questions/Question24">Adoption of different development methodologies</a></li>
+                        <li><a href="/Dashboard/Questions/Question31">Number of projects that follow a given methodology</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/technology-and-methodology.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fab fa-microsoft"></i>
+            <div class="count">Microsoft</div>
+            <div class="title">Most popular technology vendor</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-code"></i>
+            <div class="count">.NET</div>
+            <div class="title">Most used technology</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-cog"></i>
+            <div class="count">Agile</div>
+            <div class="title">Most popular development methodology</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>There has been a change in who owns and influences decisions with respect to technology choices. As many technologies have become more tactical than strategic – for example, Cloud services can be easily provisioned on a project by project basis. Vendor choices reflect the mix of old and new IT with stalwarts such as Microsoft next to new players like Google.</p>
+        <p>The more strategic choices are in development methodologies. The adoption of Agile and DevOps is significant in attaining the ambitions of Digital Transformation – faster, more efficient development and deployment of applications. However, these require a shift in culture and the way in which teams are rewarded to maximise their value to the business.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/devops-and-agile/devops-is-evolving-but-does-it-have-a-future-beyond-software/">
+                <h4 class="list-group-item-heading">DevOps is evolving, but does it have a future beyond Software?</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/devops-and-agile/the-imperatives-for-devops-in-digital-transformation/">
+                <h4 class="list-group-item-heading">The Imperatives for DevOps in Digital Transformation</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

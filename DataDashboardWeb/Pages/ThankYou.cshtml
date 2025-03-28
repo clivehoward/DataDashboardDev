@@ -1,0 +1,78 @@
+﻿@page
+@model DataDashboardWeb.Pages.ThankYouModel
+@{
+    ViewData["Title"] = "Thank You";
+    ViewData["MetaDescription"] = "Thank you for subscribing to Discovered Insights.";
+}
+
+@if (Model.IsCompleteSuccess)
+{
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h1>Thank You</h1>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h3>Your subscription will be activated as soon as your payment has been successfully processed.</h3>
+            <p>You will shortly receive a confirmation email containing information about how to access the dashboard and report.</p>
+            <p>Your subscription reference is <b>@Model.SubscriptionReference</b>, please make a note of this and quote it in any future correspondance.</p>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+}
+
+@if (Model.IsPending)
+{
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h1>Thank You</h1>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h3>Your subscription will be activated as soon as your payment has been successfully processed.</h3>
+            <p>You will shortly receive a confirmation email containing information about how to access the dashboard and report.</p>
+            <p>In the event of any queries please contact us and quote reference <b>@Model.SubscriptionReference</b></p>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+}
+
+@if (Model.IsCompleteFail)
+{
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h1>Sorry</h1>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <h3>We are unable to activate your subscription at this time and you will not have been charged.</h3>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+}
+
+<p><small>@Model.Output</small></p>

@@ -1,0 +1,274 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Questions.Question14Model
+@{
+    ViewData["Title"] = "Key attributes of a Digital Transformation initiative";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<style>
+
+    #chart1Legend ul {
+        list-style: none;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+
+    #chart1Legend li {
+        display: block;
+        padding-bottom: 5px;
+    }
+
+        #chart1Legend li span {
+            width: 20px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question14">Key attributes of a Digital Transformation initiative</a></li>
+                        <li><a href="/Dashboard/Questions/Question15">Key considerations to a Digital Transformation initiative</a></li>
+                        <li><a href="/Dashboard/Questions/Question16">Ownership roles of a Digital Transformation strategy</a></li>
+                        <li><a href="/Dashboard/Questions/Question20">Business barriers to Digital Transformation</a></li>
+                        <li><a href="/Dashboard/Questions/Question26">Technical barriers to Digital Transformation</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="btn-group">
+                    <a class="btn btn-default dropdown-toggle disabled" aria-expanded="false" href="#" data-toggle="dropdown" id="btnDownloadOptions">
+                        Download
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="btnSaveChartAsImage">Chart (.png)</a></li>
+                        <li><a href="#" id="btnSaveDataAsImage">Data (.png)</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h4>@ViewData["Title"]</h4>
+    </div>
+</div>
+
+@if (Model.ChartRawData.TotalResults == 0)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-1 hidden-xs hidden-sm text-center">
+                    <span class="no-data-icon"><i class="fas fa-exclamation"></i></span>
+                </div>
+                <div class="col-md-11 col-xs-12 col-sm-12">
+                    <h2>Sorry</h2>
+                    <p>There is no data available, please check your selected filters and perhaps widen your criteria.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-10">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <canvas id="chart1"></canvas>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Legend</div>
+                <div class="panel-body">
+                    <div id="chart1Legend"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Data &nbsp;<small><cite>ALL figures are percentages</cite> - select column heading to re-order results</small></div>
+        <table class="table table-condensed table-hover" id="allDataTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Not Important</th>
+                    <th>Moderately Important</th>
+                    <th>Important</th>
+                    <th>Very Important</th>
+                    <th>Crucial</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.ChartRawData.Labels.Count; i++)
+            {
+                <tr>
+                    <td>@Model.ChartRawData.Labels[i]</td>
+                    <td>@Model.ChartRawData.Results.Where(r => r.Name == "NotImportant").SelectMany(r => r.Values.Select(s => s.Value)).Skip(i).Take(1).Single().ToString()</td>
+                    <td>@Model.ChartRawData.Results.Where(r => r.Name == "ModeratelyImportant").SelectMany(r => r.Values.Select(s => s.Value)).Skip(i).Take(1).Single().ToString()</td>
+                    <td>@Model.ChartRawData.Results.Where(r => r.Name == "Important").SelectMany(r => r.Values.Select(s => s.Value)).Skip(i).Take(1).Single().ToString()</td>
+                    <td>@Model.ChartRawData.Results.Where(r => r.Name == "VeryImportant").SelectMany(r => r.Values.Select(s => s.Value)).Skip(i).Take(1).Single().ToString()</td>
+                    <td>@Model.ChartRawData.Results.Where(r => r.Name == "Crucial").SelectMany(r => r.Values.Select(s => s.Value)).Skip(i).Take(1).Single().ToString()</td>
+                </tr>
+        }
+            </tbody>
+        </table>
+        <div class="panel-footer"><small>@Model.ChartRawData.TotalResults% of those that could answer this question actually did</small></div>
+    </div>
+}
+
+@section scripts {
+    <script>
+
+        $(function () {
+            SetTopicNavigation("Digital transformation");
+            SetDataDropdown("@ViewData["Title"]");
+
+            $("#btnSaveDataAsImage").click(function () { // Enable data table downloading as image
+                DownloadDataAsImage("@ViewData["Title"].ToString()");
+            });
+
+            $("#btnSaveChartAsImage").click(function () { // Enable chart downloading as image
+                DownloadChartAsImage(1000, 500, 180, 200, "@ViewData["Title"].ToString()");
+            });
+        });
+
+@if (Model.ChartRawData.TotalResults > 0)
+{
+	<text>
+        // CHART 1 ///////////////////////////////////////////////////////////////////
+        var ctx1 = document.getElementById('chart1').getContext('2d');
+
+        var chart1 = new Chart(ctx1, {
+            type: 'horizontalBar',
+            data: {
+                labels: [@Html.Raw(Model.Chart1.Labels)],
+                datasets: [{
+                    label: "@Html.Raw(Model.Chart1.DataSetName)",
+                    backgroundColor: '@Html.Raw(Model.Chart1.SingleColor)',
+                    data: [@Html.Raw(Model.Chart1.DataValues)],
+                },
+                {
+                    label: "@Html.Raw(Model.Chart2.DataSetName)",
+                    backgroundColor: '@Html.Raw(Model.Chart2.SingleColor)',
+                    data: [@Html.Raw(Model.Chart2.DataValues)],
+                },
+                {
+                    label: "@Html.Raw(Model.Chart3.DataSetName)",
+                    backgroundColor: '@Html.Raw(Model.Chart3.SingleColor)',
+                    data: [@Html.Raw(Model.Chart3.DataValues)],
+                },
+                {
+                    label: "@Html.Raw(Model.Chart4.DataSetName)",
+                    backgroundColor: '@Html.Raw(Model.Chart4.SingleColor)',
+                    data: [@Html.Raw(Model.Chart4.DataValues)],
+                },
+                {
+                    label: "@Html.Raw(Model.Chart5.DataSetName)",
+                    backgroundColor: '@Html.Raw(Model.Chart5.SingleColor)',
+                    data: [@Html.Raw(Model.Chart5.DataValues)],
+                }]
+            },
+            options: {
+                legend: {
+                    display: false,
+                    position: 'right',
+                },
+                title: {
+                    display: false,
+                },
+                tooltips: {
+                    bodyFontSize: 12,
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label  + ': ' + tooltipItem.xLabel + '%';
+                        }
+                    }
+                },
+                scales:
+                {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                },
+                layout: {
+                    padding: {
+                        left: 130,
+                        right: 10
+                    }
+                },
+                animation: {
+                    onComplete: function () {
+                        ChartAnimationComplete();
+                    }
+                }
+            }
+        });
+
+        document.getElementById('chart1Legend').innerHTML = chart1.generateLegend().replace(/([A-Z])(?![^<]+>)/g, ' $1').trim(); //chart1.generateLegend();
+
+        // This enables table sorting (excludes first column)
+        $(document).ready(function () {
+            $('#allDataTable').DataTable({
+                "paging": false,
+                "ordering": true,
+                "info": false,
+                "searching": false,
+                "columnDefs": [
+                    {
+                        "orderable": false,
+                        "targets": 0
+                    },
+                    {
+                        "orderSequence": ["desc", "asc"],
+                        "targets": [1, 2, 3, 4, 5]
+                    }
+                ],
+                order: [[1, 'desc']]
+            });
+        });
+
+	</text>
+}
+
+    </script>
+}

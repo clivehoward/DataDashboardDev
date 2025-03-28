@@ -1,0 +1,128 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.MobileDevelopmentStrategyModel
+@{
+    ViewData["Title"] = "Mobile development strategy";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>How IT will meet the demand for more applications</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question40">Target audience groups for mobile development</a></li>
+                        <li><a href="/Dashboard/Questions/Question55">Key considerations to a mobile app development strategy</a></li>
+                        <li><a href="/Dashboard/Questions/Question38">Ownership roles of mobile initiatives</a></li>
+                        <li><a href="/Dashboard/Questions/Question39">Ownership roles of mobile development</a></li>
+                        <li><a href="/Dashboard/Questions/Question52">Planned development for wearables</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/mobile-development-strategy.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-list-ol"></i>
+            @*<div class="count"></div>*@
+            <div class="title">User Interface, usability, and speed</div>
+            <div class="desc">Top 3 considerations of a mobile app development strategy</div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-bar"></i>
+            <div class="count">34%</div>
+            <div class="title">Of organisations have plans to develop for wearables</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-user"></i>
+            <div class="count">IT Managers</div>
+            <div class="title">The main ownership role of mobile app development strategy</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>Mobile is often a key part of an organisations Digital Transformation. Initiatives such as the Digital Workforce can deliver on ambitions such as improved efficiency and better employee experiences. Mobile also presents opportunities for IT. As these projects tend to involve smaller teams and shorter delivery times, they have been great for testing new technologies (such as Cloud) and new processes (such as Agile).</p>
+        <p>Mobile also presents challenges to IT in areas such as security and handling increased load on internal systems. The benefits can include: improved efficiency; better user experiences; new customer engagement models. The right development strategy can help to deliver the modern digital business.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/case-studies/city-furniture-mobile-transformation/">
+                <h4 class="list-group-item-heading">City Furniture Mobile Transformation</h4>
+                <p class="list-group-item-text">Case study</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/achieving-mobile-app-development-success-with-hybrid-cloud/">
+                <h4 class="list-group-item-heading">Achieving Mobile App Development Success with Hybrid Cloud</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

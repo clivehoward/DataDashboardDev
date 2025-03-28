@@ -1,0 +1,129 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.HomeModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div id="jumbotron" class="jumbotron" style="background-image: url('/images/jumbotron/hero-1.png');">
+    <h1 class="hero-overlay-text">Welcome, @Model.FirstName</h1>
+    <p class="hero-overlay-text">Remember to download "Discovered Insights 2018 Companion Report: Understanding Digital Transformation"</p>
+    <p>
+        <a href="/download/Discovered-Insights-2018-Companion-Report-Understanding-Digital-Transformation" class="btn btn-danger btn-lg">Download Report &raquo;</a>
+    </p>
+</div>
+
+@*<div class="alert alert-warning" role="alert">
+        <b>Please note that ALL data is shown in percentages</b>
+    </div>*@
+
+<div class="well">
+    First time visitors may want to read our <a href="~/Dashboard/FirstTime">first time guide</a> that explains key features &raquo;
+</div>
+
+<div class="row">
+
+    <div class="col-md-8">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-bar"></i>
+            <div class="count">Data and insight</div>
+            <div class="desc" style="font-size: 15px;">
+                <p>Our data has been sourced through over 1,100 conversations with individuals in roles across IT and the business; from multiple industries, company sizes, and geographies. Data can be filtered by these parameters.</p>
+                <p>The Companion Report "Understanding Digital Transformation" includes rich insights into each topic area. If you do not wish to read the report then each topic area is also available to listen to.</p>
+            </div>
+        </div>
+
+        <div class="info-box info">
+            <i class="fas fa-chart-pie"></i>
+            <div class="count">Using the data</div>
+            <div class="desc" style="font-size: 15px;">
+                <p>To make the right change for your organisations, you need to leverage Discovered Insights data and insight.</p>
+                <p>Applying filters allows you to benchmark against similar businesses, profile prospective customers, and identify benefits and solutions for your organisation.</p>
+                <p>Downloading charts and tables, and copying insight, allows you to easily build presentations and other documents that support change in your organisation.</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box success">
+            <i class="fa fa-question"></i>
+            <div class="count">Bespoke enquiry</div>
+            <div class="desc" style="font-size: 15px;">
+                <p>You can request insight more specific to your organisation, such as your industry or a specific topic area.</p>
+                <p><a href="~/Dashboard/Enquiry" style="color: white; text-decoration: underline;">Click here</a> to submit an enquiry and get additional insight from an industry analyst involved in collecting our data.</p>
+            </div>
+        </div>
+
+        <div class="info-box primary">
+            <i class="fas fa-video"></i>
+            <div class="count">How-to video</div>
+            <div class="desc" style="font-size: 15px;">
+                <p><a href="#" onclick="lightbox_open();" style="color: white; text-decoration: underline;">Click here</a> to see how-to "get the most from Discovered Insights".</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="light">
+    <a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>
+    <video id="promoVideo" width="600" height="375" controls>
+        <source src="~/video/get-the-most-from-discovered-insights.mp4" type="video/mp4">
+        Browser does not support video tag
+    </video>
+</div>
+<div id="fade" onClick="lightbox_close();"></div>
+
+<script type="text/javascript">
+
+    window.document.onkeydown = function (e) {
+        if (!e) {
+            e = event;
+        }
+        if (e.keyCode == 27) {
+            lightbox_close();
+        }
+    }
+
+    function lightbox_open() {
+
+        // Show the video lightbox
+        var lightBoxVideo = document.getElementById("promoVideo");
+
+        // Size the video
+        var width = $(document.getElementById('jumbotron')).width();
+        var height = Math.round(width * 0.625);
+        $(lightBoxVideo).width(width);
+        $(lightBoxVideo).height(height);
+
+        // Position the video
+        var top = Math.round(($(window).height() - height) / 2);
+        var left = Math.round(($(window).width() - width) / 2);
+        $(document.getElementById('light')).css('top', top + 'px');
+        $(document.getElementById('light')).css('left', left + 'px');
+
+        window.scrollTo(0, 0); // Scroll back to top of screen
+
+        // Show the screen fade and the video
+        $(document.getElementById('light')).css("display", "block");
+        $(document.getElementById('fade')).css("display", "block");
+
+        lightBoxVideo.play(); // Play the video
+
+    }
+
+    function lightbox_close() {
+
+        // Close the video lightbox
+        // hide the screen fade and the video
+        $(document.getElementById('light')).css("display", "none");
+        $(document.getElementById('fade')).css("display", "none");
+
+        var lightBoxVideo = document.getElementById("promoVideo");
+        lightBoxVideo.pause(); // Pause the video
+
+    }
+
+</script>

@@ -1,0 +1,136 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.DigitalTransformationModel
+@{
+    ViewData["Title"] = "Digital transformation";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>Driving innovation in the modern digital enterprise</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question14">Key attributes of a Digital Transformation initiative</a></li>
+                        <li><a href="/Dashboard/Questions/Question15">Key considerations to a Digital Transformation initiative</a></li>
+                        <li><a href="/Dashboard/Questions/Question16">Ownership roles of a Digital Transformation strategy</a></li>
+                        <li><a href="/Dashboard/Questions/Question20">Business barriers to Digital Transformation</a></li>
+                        <li><a href="/Dashboard/Questions/Question26">Technical barriers to Digital Transformation</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/digital-transformation.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-line"></i>
+            @*<div class="count"></div>*@
+            <div class="title">Create better customer, employee, and partner experiences</div>
+            <div class="desc">Most Crucial Attribute of a Digital Transformation initiative</div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-bar"></i>
+            @*<div class="count"></div>*@
+            <div class="title">More efficient operation of the business</div>
+            <div class="desc">Number 1 consideration of a Digital Transformation initiative</div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-user"></i>
+            @*<div class="count"></div>*@
+            <div class="title">Chief Executive Officer</div>
+            <div class="desc">Number 1 ownership role of Digital Transformation strategy</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>Digital Transformation is a business led change that aims to fundamentally transform the way an organisation works internally, and engages with its partners, suppliers and customers. While intrinsically linked to technology, it is not about IT and this is reflected in the roles that own Digital Transformation strategies.</p>
+        <p>Key tenets are improved efficiency of the business; delivering better customer and employee experiences; and supporting innovation. These ambitions require organisations to operate more quickly; develop an understanding of what it means to be a digital business; and embrace new skills both in the business and IT.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/podcasts-and-videos/transforming-to-digital-precision-tactics-from-the-ibm-cloud-garages/">
+                <h4 class="list-group-item-heading">Transforming to digital – Precision tactics from the IBM Cloud Garages</h4>
+                <p class="list-group-item-text">Podcast</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/case-studies/deutsche-telekom-enhancing-employee-engagement-to-improve-the-customer-experience/">
+                <h4 class="list-group-item-heading">Deutsche Telekom: Enhancing employee engagement to improve the customer experience</h4>
+                <p class="list-group-item-text">Case study</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/case-studies/swisscom-innovation-labs-can-identify-what-digital-transformation-success-entails/">
+                <h4 class="list-group-item-heading">Swisscom: Innovation labs can identify what digital transformation success entails</h4>
+                <p class="list-group-item-text">Case study</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/case-studies/bp-castrol-joint-business-and-it-ownership-delivers-digital-success/">
+                <h4 class="list-group-item-heading">BP Castrol: Joint business and IT ownership delivers digital success</h4>
+                <p class="list-group-item-text">Case study</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

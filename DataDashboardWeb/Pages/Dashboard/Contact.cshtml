@@ -1,0 +1,95 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.ContactModel
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<h2>Contact</h2>
+
+@if (string.IsNullOrWhiteSpace(Model.SuccessMessage) == false)
+{
+    <div class="alert alert-success" role="alert">@Model.SuccessMessage</div>
+}
+@if (string.IsNullOrWhiteSpace(Model.ErrorMessage) == false)
+{
+    <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+}
+
+<form method="post" class="form-horizontal">
+
+    <input type="hidden" asp-for="ContactForm.SubscriptionReference" />
+
+    <div class="row">
+        <div class="col-md-7">
+
+            <div class="well bs-component">
+
+                <fieldset>
+                    @*<legend>Your Details</legend>*@
+
+                    <div class="form-group">
+                        <label asp-for="ContactForm.FirstName" class="col-lg-2 control-label">First Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" asp-for="ContactForm.FirstName" class="form-control" placeholder="First Name">
+                            <span class="label label-warning" asp-validation-for="ContactForm.FirstName"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ContactForm.LastName" class="col-lg-2 control-label">Last Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" asp-for="ContactForm.LastName" class="form-control" placeholder="Last Name">
+                            <span class="label label-warning" asp-validation-for="ContactForm.LastName"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ContactForm.Email" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="email" asp-for="ContactForm.Email" class="form-control" placeholder="Email">
+                            <span class="label label-warning" asp-validation-for="ContactForm.Email"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ContactForm.EnquiryText" class="col-lg-2 control-label">Message</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" asp-for="ContactForm.EnquiryText" rows="3"></textarea>
+                            <span class="label label-warning" asp-validation-for="ContactForm.EnquiryText"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+        </div>
+        <div class="col-md-5">
+
+            <p>To ask a question or send us a comment please complete this form.</p>
+            <p>We endeavour to respond as quickly as possible.</p>
+            <p>&nbsp;</p>
+            <p><strong>Please note, all fields are mandatory.</strong></p>
+
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script>
+    $(function () { // Set the appropriate nav item to active
+        $($(".nav:nth-child(2)").find("li").get(1)).addClass("active");
+    });
+</script>
+}

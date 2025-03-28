@@ -1,0 +1,204 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Questions.Question18Model
+@{
+    ViewData["Title"] = "Where applications are deployed within an organisation";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<style>
+
+    #chart1Legend ul {
+        list-style: none;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+
+    #chart1Legend li {
+        display: block;
+        padding-bottom: 5px;
+    }
+
+        #chart1Legend li span {
+            width: 20px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question19">Types of applications being developed per delivery platform</a></li>
+                        <li><a href="/Dashboard/Questions/Question18">Where applications are deployed within an organisation</a></li>
+                        <li><a href="/Dashboard/Questions/Question25">Key considerations when building applications that support Digital Transformation</a></li>
+                        <li><a href="/Dashboard/Questions/Question11">Key drivers for an API (Web Service) strategy</a></li>
+                        <li><a href="/Dashboard/Questions/Question35">Virtualisation technology vendor usage</a></li>
+                        <li><a href="/Dashboard/Questions/Question32">Usage of server technologies - currently and in future</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="btn-group">
+                    <a class="btn btn-default dropdown-toggle disabled" aria-expanded="false" href="#" data-toggle="dropdown" id="btnDownloadOptions">
+                        Download
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" id="btnSaveChartAsImage">Chart (.png)</a></li>
+                        <li><a href="#" id="btnSaveDataAsImage">Data (.png)</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h4>@ViewData["Title"]</h4>
+    </div>
+</div>
+
+@if (Model.ChartRawData.TotalResults == 0)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-1 hidden-xs hidden-sm text-center">
+                    <span class="no-data-icon"><i class="fas fa-exclamation"></i></span>
+                </div>
+                <div class="col-md-11 col-xs-12 col-sm-12">
+                    <h2>Sorry</h2>
+                    <p>There is no data available, please check your selected filters and perhaps widen your criteria.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <canvas id="chart1"></canvas>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Data &nbsp;<small><cite>ALL figures are percentages</cite></small></div>
+        <table class="table table-condensed table-hover" id="allDataTable">
+            <tr>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (var i = 0; i < Model.ChartRawData.Labels.Count; i++)
+            {
+                <tr>
+                    <td>@Model.ChartRawData.Labels[i]</td>
+                    <td>@Model.ChartRawData.Results.Where(r => r.Name == "Default").SelectMany(r => r.Values.Select(s => s.Value)).Skip(i).Take(1).Single().ToString()</td>
+                </tr>
+            }
+        </table>
+        <div class="panel-footer"><small>@Model.ChartRawData.TotalResults% of those that could answer this question actually did</small></div>
+    </div>
+}
+
+@section scripts {
+    <script>
+
+        $(function () {
+            SetTopicNavigation("Application strategy");
+            SetDataDropdown("@ViewData["Title"]");
+
+            $("#btnSaveDataAsImage").click(function () { // Enable data table downloading as image
+                DownloadDataAsImage("@ViewData["Title"].ToString()");
+            });
+
+            $("#btnSaveChartAsImage").click(function () { // Enable chart downloading as image
+                DownloadChartAsImage(1000, 500, 0, 0, "@ViewData["Title"].ToString()");
+            });
+        });
+
+@if (Model.ChartRawData.TotalResults > 0)
+{
+	<text>
+        // CHART 1 ///////////////////////////////////////////////////////////////////
+        var ctx1 = document.getElementById('chart1').getContext('2d');
+
+        var chart1 = new Chart(ctx1, {
+            type: 'horizontalBar',
+            data: {
+                labels: [@Html.Raw(Model.Chart1.Labels)],
+                datasets: [{
+                    label: "@Html.Raw(Model.Chart1.DataSetName)",
+                    backgroundColor: '@Html.Raw(Model.Chart1.SingleColor)',
+                    data: [@Html.Raw(Model.Chart1.DataValues)],
+                }]
+            },
+            options: {
+                legend: {
+                    display: false,
+                    position: 'right',
+                },
+                title: {
+                    display: false,
+                },
+                tooltips: {
+                    bodyFontSize: 12,
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return tooltipItem.xLabel + '%';
+                        }
+                    }
+                },
+                scales:
+                {
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                },
+                layout: {
+                    padding: {
+                        left: 60,
+                        right: 10
+                    }
+                },
+                animation: {
+                    onComplete: function () {
+                        ChartAnimationComplete();
+                    }
+                }
+            }
+        });
+
+	</text>
+}
+
+    </script>
+}

@@ -1,0 +1,131 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.MobileAppStrategyModel
+@{
+    ViewData["Title"] = "Mobile app strategy";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>Building more apps to support the digital enterprise</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question43">Types of mobile apps that organisations are developing</a></li>
+                        <li><a href="/Dashboard/Questions/Question48">Barriers to delivering mobile apps</a></li>
+                        <li><a href="/Dashboard/Questions/Question42">Business functions for which mobile apps are being built</a></li>
+                        <li><a href="/Dashboard/Questions/Question36">In-house versus outsourced mobile app development</a></li>
+                        <li><a href="/Dashboard/Questions/Question46">Number of mobile apps developed for internal use</a></li>
+                        <li><a href="/Dashboard/Questions/Question47">Number of mobile apps developed for external use</a></li>
+                        <li><a href="/Dashboard/Questions/Question9">Target audience groups for mobile application development</a></li>
+                        <li><a href="/Dashboard/Questions/Question44">Types of mobile apps being developed in the next 12-18 months</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/mobile-app-strategy.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-home"></i>
+            <div class="count">81%</div>
+            <div class="title">Of organisations are doing in-house mobile app development</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-mobile-alt"></i>
+            <div class="count">3+ apps</div>
+            <div class="title">91% of enterprises have built 3+ apps for internal use</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-briefcase"></i>
+            <div class="count">B2B</div>
+            <div class="title">Number 1 audience for mobile apps in future</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>There is a shift towards building more Business-to-Business and Business-to-Employee mobile apps. Those which serve to improve the way in which business functions operate. Functions that are benefiting include Marketing, Finance and HR. Most enterprises have already built more of these types of application than those that target customers.</p>
+        <p>Demand from the business will continue to grow – driven by Digital Transformation – and certain challenges will need to be overcome. These include lack of skills, and not knowing what apps to build. However, organisations do understand they will need to deliver these apps themselves and not through third parties.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/case-studies/city-furniture-mobile-transformation/">
+                <h4 class="list-group-item-heading">City Furniture Mobile Transformation</h4>
+                <p class="list-group-item-text">Case study</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/achieving-mobile-app-development-success-with-hybrid-cloud/">
+                <h4 class="list-group-item-heading">Achieving Mobile App Development Success with Hybrid Cloud</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

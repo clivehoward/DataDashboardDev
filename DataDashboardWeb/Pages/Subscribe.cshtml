@@ -1,0 +1,259 @@
+﻿@page "{promocode?}"
+@model DataDashboardWeb.Pages.SubscribeModel
+@{
+    ViewData["Title"] = "Subscribe";
+    ViewData["MetaDescription"] = "Subscribe to Discovered Insights and get access to data and insight that will help you to make the right change for your organisation.";
+}
+
+<h2>Subscribe</h2>
+
+@if (string.IsNullOrWhiteSpace(Model.ErrorMessage) == false)
+{
+    <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+}
+
+<form method="post" id="payment-form" class="form-horizontal">
+
+    <div class="row">
+        <div class="col-md-7">
+
+            <div class="well bs-component">
+
+                <fieldset>
+                    <legend>Your Details</legend>
+
+                    <div class="form-group">
+                        <label asp-for="SubscribeForm.FirstName" class="col-lg-2 control-label">First Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" asp-for="SubscribeForm.FirstName" class="form-control" placeholder="First Name">
+                            <span class="label label-warning" asp-validation-for="SubscribeForm.FirstName"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SubscribeForm.LastName" class="col-lg-2 control-label">Last Name</label>
+                        <div class="col-lg-10">
+                            <input type="text" asp-for="SubscribeForm.LastName" class="form-control" placeholder="Last Name">
+                            <span class="label label-warning" asp-validation-for="SubscribeForm.LastName"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SubscribeForm.Email" class="col-lg-2 control-label">Email</label>
+                        <div class="col-lg-10">
+                            <input type="email" asp-for="SubscribeForm.Email" class="form-control" placeholder="Email">
+                            <span class="label label-warning" asp-validation-for="SubscribeForm.Email"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <label style="clear: both; display: block;">
+                                <input type="checkbox" asp-for="SubscribeForm.TermsAndConditions"> I agree to the <a href="/TermsAndConditions" target="_blank">Terms and Conditions</a>
+                            </label>
+                            <span class="label label-warning" asp-validation-for="SubscribeForm.TermsAndConditions"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <div id="reCaptchaDiv"></div>
+                            <div style="height: 0px; display: block; overflow: hidden;"><input type="text" asp-for="SubscribeForm.ReCaptcha" /></div>
+                            <span class="label label-warning" asp-validation-for="SubscribeForm.ReCaptcha"></span>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>Communication Preferences</legend>
+
+                    <p><small>We would like to send you emails such as notifications about new features, special offers, or additional insights. Please let us know if you would like to receive these emails by selecting from the following two options.*</small></p>
+
+                    <div class="form-group">
+                        <div class="col-lg-10">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" asp-for="SubscribeForm.IsCommsOkay" value="true" />
+                                    Yes, I would like to receive these emails
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" asp-for="SubscribeForm.IsCommsOkay" value="false" />
+                                    No, I would prefer not to receive these emails
+                                </label>
+                            </div>
+                            <span class="label label-warning" asp-validation-for="SubscribeForm.IsCommsOkay"></span>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>Payment</legend>
+
+                    <div class="form-group">
+                        <div class="col-lg-12" id="card-element">
+                            <div id="card-element">
+                                <!-- a Stripe Element will be inserted here. -->
+                            </div>
+                            <span id="card-errors" role="alert" class="label label-warning"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-default">Pay and Subscribe</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+        </div>
+        <div class="col-md-5">
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">12 months access</h3>
+                </div>
+                <div class="panel-body">
+                    @if (string.IsNullOrWhiteSpace(Model.PromoCode) == false)
+                    {
+                        <p class="text-danger" style="font-size: x-large">Discount Price!</p>
+                        <p><strong>Reduced from £1,500 with code</strong> @Model.PromoCode</p>
+                    }
+
+                    <span style="font-size: xx-large; font-weight: bold;">£@string.Format("{0:n0}", Model.SubscriptionPrice)</span> +VAT &#64; 20%
+                    <p>Includes data, companion report, and 1 bespoke enquiry</p>
+                </div>
+            </div>
+
+            <p>To subscribe please complete this form.</p>
+            <p>All information is mandatory.</p>
+            <p>Upon completion you will receive an email containing your password.</p>
+            <p>&nbsp;</p>
+            <p><small>*You can change your preference at any time by going to your "Account" in the portal. This does not include emails concerning your subscription such as renewals.</small></p>
+
+        </div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src='https://www.google.com/recaptcha/api.js?onload=captchaOnloadCallback&render=explicit'></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+
+        // *************************************************************************************************
+        // REMEMBER TO PUT THIS BACK WHEN SUBSCRIBE PAGE IS LIVE ///////////////////////////////////////////
+        // *************************************************************************************************
+        $(function () { // Set the appropriate nav item to active
+            $($(".nav").find("li").get(1)).addClass("active");
+        });
+
+        // reCAPTCHA ///////////////////////////////////////////////////////////////////////////////////////////
+        // Here we are setting up the reCAPTCHA and assigning a function that will run when the box is checked
+        var captchaOnloadCallback = function () {
+            grecaptcha.render('reCaptchaDiv', {
+                'sitekey': '6LcmSjkUAAAAAFNQMn43TjbnqNUqSOzrb4duyon9',
+                'callback': correctCaptcha
+            });
+        };
+
+        var correctCaptcha = function (response) {
+            $("#SubscribeForm_ReCaptcha").val(response);
+        };
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Extend range validator method to treat checkboxes differently ///////////////////////////////////////
+        // This is so that the ASP.NET validation works with checkboxes
+        var defaultRangeValidator = $.validator.methods.range;
+        $.validator.methods.range = function (value, element, param) {
+            if (element.type === 'checkbox') {
+                // if it's a checkbox return true if it is checked
+                return element.checked;
+            } else {
+                // otherwise run the default validation function
+                return defaultRangeValidator.call(this, value, element, param);
+            }
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // STRIPE //////////////////////////////////////////////////////////////////////////////////////////////
+        var stripe = Stripe('@Model.SubscribeForm.StripeKey');
+        var elements = stripe.elements();
+
+        // Custom styling can be passed to options when creating an Element.
+        var style = {
+            base: {
+                // Add your base input styles here. For example:
+                fontSize: '16px',
+                color: "#32325d",
+            }
+        };
+
+        // Create an instance of the card Element
+        var card = elements.create('card', { style: style });
+
+        // Add an instance of the card Element into the `card-element` <div>
+        card.mount('#card-element');
+
+        card.addEventListener('change', function (event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // For 3D Secure charges
+        // Create a source or display an error when the form is submitted.
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            stripe.createSource(card).then(function (result) {
+                if (result.error) {
+                    // Inform the user if there was an error
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Send the source to your server
+                    stripeSourceHandler(result.source);
+                }
+            });
+        });
+
+        // For 3D Secure charges
+        function stripeSourceHandler(source) {
+            // Insert the source ID into the form so it gets submitted to the server
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeSource');
+            hiddenInput.setAttribute('value', source.id);
+            form.appendChild(hiddenInput);
+
+            // Is the transaction 3D secure or not?
+            // Need to know this on the server
+            var hiddenInput2 = document.createElement('input');
+            hiddenInput2.setAttribute('type', 'hidden');
+            hiddenInput2.setAttribute('name', 'three_d_secure');
+            hiddenInput2.setAttribute('value', source.card.three_d_secure);
+            form.appendChild(hiddenInput2);
+
+            // Submit the form
+            form.submit();
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    </script>
+
+}

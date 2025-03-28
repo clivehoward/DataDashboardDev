@@ -1,0 +1,232 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<AppSettings> Settings
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Discovered Insights</title>
+
+    <link rel="shortcut icon" href="~/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/favicon-apple-touch-small.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/favicon-apple-touch-medium.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/favicon-apple-touch-large.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/favicon-apple-touch-x-large.png" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/lib/cookieconsent/dist/css/cookieconsent.min.css" />
+        <link rel="stylesheet" href="~/lib/datatables/dist/css/datatables.min.css" />
+        <link rel="stylesheet" href="~/lib/font-awesome/dist/css/fontawesome-all.min.css" />
+        <link rel="stylesheet" href="~/lib/jplayer/dist/progres-bar.css" />
+        <link rel="stylesheet" href="~/css/styles.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+        <link rel="stylesheet" href="~/lib/jplayer/dist/progres-bar.css" />
+        <link rel="stylesheet" href="~/css/styles.min.css" />
+        @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
+    </environment>
+
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .scroll-area {
+            width: 100%;
+            float: left;
+            /*overflow-y: auto;*/
+        }
+
+        .chk-indent-1 {
+            margin-left: 20px;
+        }
+
+        .chk-indent-2 {
+            margin-left: 30px;
+        }
+
+        .validation-summary-errors ul {
+            list-style-type: none;
+            margin-left: -40px;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-page="/Dashboard/Home" class="navbar-brand">Discovered Insights</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav nav-pills">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="navDropdownSelected">
+                            Select Topic Area...
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Dashboard/Topics/DigitalTransformation">Digital transformation</a></li>
+                            <li><a href="/Dashboard/Topics/DevelopmentStrategy">Development strategy</a></li>
+                            <li><a href="/Dashboard/Topics/TechnologyAndMethodology">Technology and methodology</a></li>
+                            <li><a href="/Dashboard/Topics/DevelopmentLanguages">Development languages</a></li>
+                            <li><a href="/Dashboard/Topics/ProfessionalDevelopers">Professional developers</a></li>
+                            <li><a href="/Dashboard/Topics/NonProfessionalDevelopers">Non-professional developers</a></li>
+                            <li><a href="/Dashboard/Topics/MobileDevelopmentStrategy">Mobile development strategy</a></li>
+                            <li><a href="/Dashboard/Topics/MobileAppStrategy">Mobile app strategy</a></li>
+                            <li><a href="/Dashboard/Topics/MobileTechnologyStrategy">Mobile technology strategy</a></li>
+                            <li><a href="/Dashboard/Topics/Cloud">Cloud</a></li>
+                            <li><a href="/Dashboard/Topics/ApplicationStrategy">Application strategy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-toggle="modal" id="launchFilters"><i class="fas fa-filter"></i> Filter @Html.Raw(await CoveragePercentage.GetPercentage(Model.HttpContext, Settings))</a></li>
+                    <li><a href="/Dashboard/AllTopics"><i class="fas fa-list"></i> All Topics</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/Dashboard/Enquiry"><i class="fas fa-question"></i> Enquiry</a></li>
+                    <li><a href="/Dashboard/Contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="/Dashboard/Account"><i class="fas fa-user"></i> Account</a></li>
+                    <li><a href="/Dashboard/Logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+
+        <p>&nbsp;</p>
+        <div class="alert alert-info">
+            <div class="row">
+                <div class="col-md-1 hidden-xs hidden-sm">
+                    <i class="fas fa-download" style="font-size: 50px;"></i>
+                </div>
+                <div class="col-md-11 col-xs-12 col-sm-12">
+                    <h4>Discovered Insights 2018 Companion Report: Understanding Digital Transformation</h4>
+                    <p>Don't forget to <a class="alert-link" href="/download/Discovered-Insights-2018-Companion-Report-Understanding-Digital-Transformation">download your copy</a> of our report that provides insight and analysis to help you get the most from the Delivered Insights data.</p>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-10 col-xs-12 col-sm-12">
+                        <h4 class="text-primary">Want to know more?</h4>
+                        <p>
+                            Should you be interested in further insight into any of the topics, visit <a href="https://www.creativeintellectuk.com/download-from-cic/" target="_blank">Creative Intellect Consulting's Research Library</a> where you will find a wealth of reports.
+                            CIC can also provide bespoke services to help you address specific areas of interest, <a href="~/Dashboard/Contact">please get in touch</a>.
+                        </p>
+                    </div>
+                    <div class="col-md-2 hidden-xs hidden-sm">
+                        <img src="~/images/cic-logo.png" width="90%" />
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        <div class="row">
+            <div class="col-md-10 col-xs-12 col-sm-12">
+                <h4 class="text-primary">Want to know more?</h4>
+                <p>
+                    Should you be interested in further insight into any of the topics, visit <a href="https://www.creativeintellectuk.com/download-from-cic/" target="_blank">Creative Intellect Consulting's Research Library</a> where you will find a wealth of reports.
+                    CIC can also provide bespoke services to help you address specific areas of interest, <a href="~/Dashboard/Contact">please get in touch</a>.
+                </p>
+            </div>
+            <div class="col-md-2 hidden-xs hidden-sm">
+                <img src="~/images/cic-logo.png" width="90%" />
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2018 - Discovered Insights</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">
+                        <a href="/TermsAndConditions">Terms and Conditions</a> |
+                        <a href="/PrivacyPolicy">Privacy Policy</a> |
+                        <a href="/CookiesPolicy">Cookies Policy</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="filters-modal"></div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/chart.js/dist/Chart.min.js"></script>
+        <script src="~/lib/cookieconsent/dist/js/cookieconsent.min.js"></script>
+        <script src="~/lib/datatables//dist/js/datatables.min.js"></script>
+        <script src="~/lib/html2canvas/dist/html2canvas.min.js"></script>
+        <script src="~/lib/filesaver/dist/FileSaver.min.js"></script>
+        <script src="~/lib/jplayer/dist/player.js"></script>
+        <script src="~/js/scripts.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+        <script src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>
+        <script src="~/lib/html2canvas/dist/html2canvas.min.js"></script>
+        <script src="~/lib/filesaver/dist/FileSaver.min.js"></script>
+        <script src="~/lib/jplayer/dist/player.js"></script>
+        <script src="~/js/scripts.min.js"></script>
+    </environment>
+
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#aa0000",
+                        "text": "#ffdddd"
+                    },
+                    "button": {
+                        "background": "#ff0000"
+                    }
+                },
+                "content": {
+                    "message": "This website requires the use of cookies in order to provide access to subscription data.",
+                    "href": "/CookiesPolicy"
+                }
+            })
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

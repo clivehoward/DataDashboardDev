@@ -1,0 +1,72 @@
+﻿@page
+@model DataDashboardWeb.Pages.LogInModel
+@{
+    ViewData["Title"] = "Log In";
+    ViewData["MetaDescription"] = "Log in to Discovered Insights data portal.";
+}
+
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <h2>Log In</h2>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+
+        <form method="post">
+
+            @if (string.IsNullOrWhiteSpace(Model.Message) == false)
+            {
+                <div class="alert alert-danger" role="alert">@Model.Message</div>
+            }
+
+            @*<div asp-validation-summary="All"></div>*@
+
+            <div class="form-group">
+                <label asp-for="LoginForm.Email">Email</label>
+                <input type="text" asp-for="LoginForm.Email" class="form-control" placeholder="Email">
+                <span class="label label-warning" asp-validation-for="LoginForm.Email"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LoginForm.Password">Password</label>
+                <input type="password" asp-for="LoginForm.Password" class="form-control" placeholder="Password">
+                <span class="label label-warning" asp-validation-for="LoginForm.Password"></span>
+            </div>
+
+            <button type="submit" class="btn btn-default">Login</button>
+
+        </form>
+
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <p></p>
+        <p>If you do not have a login then <a href="/Subscribe">please subscribe</a></p>
+        <p>If you have forgotten your password then <a href="/ForgotPassword">click here</a></p>
+
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(function () { // Set the appropriate nav item to active
+            $($(".nav").find("li").get(0)).addClass("active");
+        });
+    </script>
+}

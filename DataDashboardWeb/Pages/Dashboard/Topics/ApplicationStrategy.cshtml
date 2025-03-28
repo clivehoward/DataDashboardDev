@@ -1,0 +1,136 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.ApplicationStrategyModel
+@{
+    ViewData["Title"] = "Application strategy";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>The right applications and environment for the future</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question19">Types of applications being developed per delivery platform</a></li>
+                        <li><a href="/Dashboard/Questions/Question18">Where applications are deployed within an organisation</a></li>
+                        <li><a href="/Dashboard/Questions/Question25">Key considerations when building applications that support Digital Transformation</a></li>
+                        <li><a href="/Dashboard/Questions/Question11">Key drivers for an API (Web Service) strategy</a></li>
+                        <li><a href="/Dashboard/Questions/Question35">Virtualisation technology vendor usage</a></li>
+                        <li><a href="/Dashboard/Questions/Question32">Usage of server technologies - currently and in future</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/application-strategy.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-list-ol"></i>
+            @*<div class="count"></div>*@
+            <div class="title">IT Operations, Marketing, and Finance</div>
+            <div class="desc">Top 3 business functions where apps are deployed</div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-server"></i>
+            <div class="count">VMware</div>
+            <div class="title">Most popular virtualisation vendor</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-list-ol"></i>
+            @*<div class="count"></div>*@
+            <div class="title">Internal consumption, access existing systems, expose new functionality</div>
+            <div class="desc">Top 3 drivers for an API strategy</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>Applications are being deployed across organisations in support of Digital Transformation. These are being deployed to a mix of platforms (desktop, mobile, web and Cloud) and running across a variety of technologies. IT functions are putting in place strategies that enable them to support fast and efficient development of applications across platforms and technologies, that deliver great user experiences.</p>
+        <p>Critical to this is the ability to integrate across so many different systems. APIs have become the standard way to approach integration but have often lacked a clear strategy. In addition to new technologies, established technologies also have a place in the new digital business.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/what-does-it-take-to-make-the-right-application-development-choices-for-the-digital-economy/">
+                <h4 class="list-group-item-heading">What does it take to make the right Application Development choices for the digital economy?</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/seven-core-market-and-technology-trends-impacting-the-application-server-estate/">
+                <h4 class="list-group-item-heading">Seven core market and technology trends impacting the Application Server estate</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/podcasts-and-videos/supporting-the-developer-community-for-the-future/">
+                <h4 class="list-group-item-heading">Supporting the Developer Community for the Future</h4>
+                <p class="list-group-item-text">Podcast</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/podcasts-and-videos/no-excuses-for-a-crappy-app/">
+                <h4 class="list-group-item-heading">No Excuses for a ‘Crappy’ App</h4>
+                <p class="list-group-item-text">Podcast</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

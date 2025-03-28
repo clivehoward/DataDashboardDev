@@ -1,0 +1,147 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["MetaDescription"] = "Data subscription service providing data and insight to help you make the right change for your organisation.";
+}
+
+<div class="row">
+    <div class="col-md-8">
+
+        <div id="jumbotron" class="jumbotron" style="background-image: url('/images/jumbotron/@Model.HeroImage');">
+            <h1 class="hero-overlay-text">Discovered Insights</h1>
+            <p class="hero-overlay-text">Data and insight to help you make the right change for your organisation</p>
+            <p>
+                <a href="/Subscribe" class="btn btn-danger btn-lg">Subscribe &raquo;</a>
+                <a href="#" onclick="lightbox_open('/video/discovered-insights-2018.mp4');" class="btn btn-primary btn-lg"><i class="fas fa-video"></i> Demo video</a>
+            </p>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <h2 style="margin-top: 5px;"><strong>Prepare</strong> for your digital future</h2>
+        <p>Technology offers amazing new opportunities for your organisation. To be successful, you need to make informed decisions based on data and insight.</p>
+        <p>Our expertly sourced data and respected industry insight will help you to create strategies that deliver successful outcomes and ensure that you're using technology in the right way.</p>
+        <p>Discovered Insights is easy to use and to leverage data and insight in your presentations and documents - to help you make the right change for your organisation.</p>
+
+
+    </div>
+</div>
+
+@*<div class="well">
+    <strong>Get a Discovered Insights subscription today</strong> - We offer individual or group subscriptions, please <a href="/Contact">contact us</a> for full information
+</div>*@
+
+<h2><strong>How</strong> will Discovered Insights help me?</h2>
+
+<div class="row">
+    <div class="col-md-4" style="padding-bottom:15px;">
+
+        <h3>Benchmark</h3>
+        <h4>Stay ahead of the competition</h4>
+
+        <p>Find out how your organisations compares to others in your industry, geography or size.</p>
+        <p>Using filters you can get customised data and insight in order to benchmark your business and identify the best change for you.</p>
+        <a href="#" onclick="lightbox_open('/video/discovered-insights-how-to-benchmarking.mp4');" class="btn btn-primary"><i class="fas fa-video"></i> See how</a>
+
+    </div>
+    <div class="col-md-4" style="padding-bottom:15px;">
+
+        <h3>Strategy</h3>
+        <h4>Build the best business case</h4>
+
+        <p>Use data and insight to create digital strategies that make your business more successful.</p>
+        <p>Download charts and tables for use in presentations and other documents to build internal business cases.</p>
+        <a href="#" onclick="lightbox_open('/video/discovered-insights-how-to-strategy.mp4');" class="btn btn-primary"><i class="fas fa-video"></i> See how</a>
+
+    </div>
+    <div class="col-md-4" style="padding-bottom:15px;">
+
+        <h3>Sales</h3>
+        <h4>Target the right prospects</h4>
+
+        <p>Profile prospective customers to make your sales strategies more successful.</p>
+        <p>Data can be filtered in order to find the organisations that best fit your products and services.</p>
+        <a href="#" onclick="lightbox_open('/video/discovered-insights-how-to-sales.mp4');" class="btn btn-primary"><i class="fas fa-video"></i> See how</a>
+
+    </div>
+</div>
+
+<hr />
+
+<h2><strong>What</strong> does a subscription include?</h2>
+
+<div class="row">
+    <div class="col-md-4" style="margin-bottom:20px;">
+
+        <h3>Data</h3>
+
+        <p>Subscribers have access to over 50 datasets that are organised into 11 topic areas.</p>
+        <p>The data has been collected through conversations with over 1,100 individuals from roles across IT and the business. Organisations ranged from micro-businesses to global enterprises.</p>
+        <p><a href="~/TopicAreas">Click here</a> to see the complete list of topic areas</p>
+
+    </div>
+    <div class="col-md-4" style="margin-bottom:20px;">
+
+        <h3>Insight</h3>
+
+        <p>Drawing on the data and conversations, The Discovered Insights Companion Report "Understanding Digital Transformation", provides valuable insight into the topic areas.</p>
+        <p>Each topic area from the report is also available to listen to in audio format.</p>
+
+    </div>
+    <div class="col-md-4" style="margin-bottom:20px;">
+
+        <h3><i class="fas fa-star"></i> Enquiry</h3>
+
+        <p>While the data and companion report provides a wealth of information to help you make the right change in your organisation, there may be the need for more specific insight.</p>
+        <p>Each individual subscriber* can get additional insight based on the data that will be answered by an experienced analyst.</p>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-bar"></i>
+            <div class="count">The value of our data</div>
+            <div class="desc" style="font-size: 15px;">
+                <p>Our data has been sourced through over 1,100 conversations with individuals in roles across IT and the business; from multiple industries, company sizes, and geographies.</p>
+                <p>We do not use random web based surveys that sacrifice quality for quantity. Our surveys have been crafted by experienced market intelligence experts Creative Intellect Consulting.</p>
+                <p>Respected industry analysts have provided rich insight into what this data means and how it can shape strategy and change in your organisation.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<h2 style="margin-top: 0px;"><strong>Creative</strong> Intellect Consulting</h2>
+
+<div class="row" style="padding-top:15px;">
+    <div class="col-md-10">
+
+        <p>The Discovered Insights data has been collected by Creative Intellect Consulting (CIC), a respected independent Industry Analyst firm with decades of experience and expertise in the IT industry.</p>
+        <p>CIC has advised clients that include the world’s largest IT vendors and enterprise organisations.</p>
+        <p>The companion report draws on the data and CIC's additional extensive knowledge of the IT market.</p>
+
+    </div>
+    <div class="col-md-2">
+        <img src="~/images/cic-logo.png" width="90%" alt="Creative Intellect Consulting" />
+    </div>
+</div>
+
+<hr />
+
+<small>* Individual subscription includes 1 enquiry, submitted via the enquiry form, that will be based on the Discovered Insights data and can be specific to industry, geography, organisation size and/or a topic area. The reply will be provided via email in a minimum of 500 words. Enquiries may not be available to all subcribers as part of a group subscription but allocated to the organisation.</small>
+
+<p>&nbsp;</p>
+
+<div id="light">
+    <a class="boxclose" id="boxclose" onclick="lightbox_close();"></a>
+    <video id="promoVideo" width="600" height="375" controls>
+        <source src="" type="video/mp4" id="videoSource">
+        Browser does not support video tag
+    </video>
+</div>
+<div id="fade" onClick="lightbox_close();"></div>

@@ -1,0 +1,126 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.ProfessionalDevelopersModel
+@{
+    ViewData["Title"] = "Professional developers";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>Acquiring talent with the right mix of skills and experience</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question30">Number of developers in an organisation</a></li>
+                        <li><a href="/Dashboard/Questions/Question34">Years of development experience</a></li>
+                        <li><a href="/Dashboard/Questions/Question37">Mobile app developers previous experience</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/professional-developers.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-line"></i>
+            <div class="count">100+</div>
+            <div class="title">56% of enterprises have over 100 developers</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-bar"></i>
+            <div class="count">10+ years</div>
+            <div class="title">66% of developers have over 10 years of experience</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-chart-pie"></i>
+            <div class="count">&lt;1 year</div>
+            <div class="title">2% of developers have less then 1 year of experience</div>
+            <div class="desc"></div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>For many organisations, Digital Transformation means more developers and they are in short supply. While they will need new skills in modern technologies such as Cloud and Mobile, organisations value developers with experience and domain knowledge of both IT systems and the business.</p>
+        <p>The solution for most organisations will be the right mix of skills and experience to support both traditional IT investments and build new ones. While many developers have over 10 years’ experience, many of the in-demand technologies are much younger. Developers will reskill but it’s important that they get support from the organisation and the broader ecosystem.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/vendors-tools-and-technologies/ibm-api-connect/">
+                <h4 class="list-group-item-heading">IBM API Connect</h4>
+                <p class="list-group-item-text">Commentary</p>
+            </a>
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/what-does-it-take-to-make-the-right-application-development-choices-for-the-digital-economy/">
+                <h4 class="list-group-item-heading">What does it take to make the right Application Development choices for the digital economy?</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

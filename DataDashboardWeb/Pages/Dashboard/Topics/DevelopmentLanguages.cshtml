@@ -1,0 +1,123 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.Topics.DevelopmentLanguagesModel
+@{
+    ViewData["Title"] = "Development languages";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>@ViewData["Title"]</h1>
+    <p>What is it that makes a language fit for the modern enterprise</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="viewDataDropdown">
+                        Please select the data that you would like to view
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Dashboard/Questions/Question2">Key attributes of a programming language</a></li>
+                        <li><a href="/Dashboard/Questions/Question3">Key support considerations of a programming language</a></li>
+                        <li><a href="/Dashboard/Questions/Question6">Predominant programming languages by delivery platform</a></li>
+                        <li><a href="/Dashboard/Questions/Question27">Predominant programming languages</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 text-right">
+
+                <div class="audio-overview-label">Listen to insight</div>
+                <div class="mediPlayer audio-overview-player">
+                    <audio class="listen" preload="none" data-size="35" src="~/audio/development-languages.mp3"></audio>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-tachometer-alt"></i>
+            @*<div class="count"></div>*@
+            <div class="title">Performance</div>
+            <div class="desc">Most important attribute of a programming language</div>
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fa fa-dollar-sign"></i>
+            <div class="count">Cost</div>
+            <div class="title">Most important consideration of a programming language</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+    <div class="col-md-4">
+
+        <div class="info-box info">
+            <i class="fab fa-js"></i>
+            <div class="count">JavaScript</div>
+            <div class="title">Most popular programming language</div>
+            @*<div class="desc"></div>*@
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <h4>Overview</h4>
+
+        <p>Organisations find themselves with a mix of programming languages and develops have become polyglots. Despite this, the choice of a language remains strategic to IT - the investment in skills, tools and applications can last for a long time.</p>
+        <p>The decision to adopt a new language is often driven by new requirements – for example, the web drove HTML adoption. Key considerations in the decision-making process are support, availability of skills and the ability to deliver applications across multiple platforms. Having a language and supporting tooling that supports faster and more efficient development, helps IT to deliver on the organisation’s Digital Transformation ambitions.</p>
+
+        <div class="well">
+            Find out more by reading this topic in the Discovered Insights Companion Report or listen to the same content by clicking on "Listen to insight" above.
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <h4>CIC insight</h4>
+
+        <p>Creative Intellect Consulting has a number of resources available on this topic, including the following:</p>
+
+        <div class="list-group">
+            <a class="list-group-item" target="_blank" href="https://www.creativeintellectuk.com/download-from-cic/cloud/what-does-it-take-to-make-the-right-application-development-choices-for-the-digital-economy/">
+                <h4 class="list-group-item-heading">What does it take to make the right Application Development choices for the digital economy?</h4>
+                <p class="list-group-item-text">Briefing note</p>
+            </a>
+        </div>
+
+        <small>Links will take you to the CIC website.</small>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+        $(function () {
+            SetTopicNavigation("@ViewData["Title"]");
+        });
+
+        $('.mediPlayer').mediaPlayer();
+
+    </script>
+
+}

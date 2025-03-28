@@ -1,0 +1,204 @@
+﻿/* info boxes */
+.info-box {
+    min-height: 140px;
+    border: none;
+    margin-bottom: 30px;
+    padding: 20px;
+    color: white;
+    overflow: auto;
+}
+
+    .info-box i {
+        display: block;
+        height: 100px;
+        font-size: 60px;
+        line-height: 100px;
+        width: 100px;
+        float: left;
+        text-align: center;
+        border-right: 2px solid rgba(255, 255, 255, 0.5);
+        margin-right: 20px;
+        padding-right: 20px;
+        color: rgba(255, 255, 255, 0.75);
+        font-style: normal;
+        font-weight: bold;
+    }
+
+    .info-box .count {
+        margin-top: -10px;
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .info-box .title {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+        width: -moz-calc(100% - 120px);
+        width: -webkit-calc(100% - 120px);
+        width: calc(100% - 120px);
+        float: right;
+    }
+
+    .info-box .desc {
+        margin-top: 10px;
+        font-size: 12px;
+        width: -moz-calc(100% - 120px);
+        width: -webkit-calc(100% - 120px);
+        width: calc(100% - 120px);
+        float: right;
+    }
+
+    .info-box.danger {
+        background: #f04124;
+        border: 1px solid #f04124;
+    }
+
+    .info-box.warning {
+        background: #e99002;
+        border: 1px solid #e99002;
+    }
+
+    .info-box.primary {
+        background: #008cba;
+        border: 1px solid #008cba;
+    }
+
+    .info-box.info {
+        background: #5bc0de;
+        border: 1px solid #5bc0de;
+    }
+
+    .info-box.success {
+        background: #43ac6a;
+        border: 1px solid #43ac6a;
+    }
+
+/* audi player */
+.audio-overview-label {
+    display: inline-block;
+    height: 35px;
+    line-height: 35px;
+    padding-right: 5px;
+}
+
+.audio-overview-player {
+    float: right;
+}
+
+/* homepage */
+.hero-overlay-text {
+    background: rgba(255,255,255,0.95);
+    padding: 10px;
+    display: inline-block;
+}
+
+/* styles for video player (home page) */
+#fade {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=80);
+}
+
+#light {
+    display: none;
+    position: absolute;
+    border: 2px solid #FFF;
+    background: #FFF;
+    z-index: 1002;
+    overflow: visible;
+}
+
+#boxclose {
+    float: right;
+    cursor: pointer;
+    color: #fff;
+    border: 1px solid #AEAEAE;
+    border-radius: 3px;
+    background: #222222;
+    font-size: 31px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    z-index: 1002;
+    opacity: 0.9;
+}
+
+.boxclose:before {
+    content: "×";
+}
+
+#fade:hover ~ #boxclose {
+    display: none;
+}
+
+/* styles to handle long dataset dropdowns on small screens */
+.panel-body .dropdown,
+.panel-body .dropdown-toggle,
+.panel-body .dropdown-menu {
+    width: 100%;
+}
+
+.panel-body .dropdown-toggle {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-menu a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* */
+.no-data-icon {
+    font-size: 60pt;
+    color: #e99002;
+}
+
+.list-group-item-heading {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+a:link .list-group-item-heading {
+    color: #008cba;
+}
+
+a:visited .list-group-item-heading {
+    color: #008cba;
+}
+
+a:hover .list-group-item-heading {
+    color: #008cba;
+}
+
+a:active .list-group-item-heading {
+    color: #008cba;
+} 
+
+/* Styles of collapsible panels with arrrows */
+.panel-heading .accordion-toggle:after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e114";
+    float: right;
+    color: grey;
+}
+
+.panel-heading .accordion-toggle.collapsed:after {
+    content: "\e080";
+}

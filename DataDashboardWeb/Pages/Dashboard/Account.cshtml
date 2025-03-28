@@ -1,0 +1,145 @@
+﻿@page
+@model DataDashboardWeb.Pages.Dashboard.AccountModel
+@{
+    ViewData["Title"] = "Account";
+    Layout = "~/Pages/_DashboardLayout.cshtml";
+}
+
+<h2>Account</h2>
+
+@if (string.IsNullOrWhiteSpace(Model.SuccessMessage) == false)
+{
+    <div class="alert alert-success" role="alert">@Model.SuccessMessage</div>
+}
+@if (string.IsNullOrWhiteSpace(Model.ErrorMessage) == false)
+{
+    <div class="alert alert-danger" role="alert">@Model.ErrorMessage</div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Your Details</div>
+            <div class="panel-body">
+
+                <form method="post">
+
+                    <div class="form-group">
+                        <label asp-for="AccountForm.FirstName">First Name</label>
+                        <input type="text" asp-for="AccountForm.FirstName" class="form-control" placeholder="First Name">
+                        <span class="label label-warning" asp-validation-for="AccountForm.FirstName"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AccountForm.LastName">Last Name</label>
+                        <input type="text" asp-for="AccountForm.LastName" class="form-control" placeholder="Last Name">
+                        <span class="label label-warning" asp-validation-for="AccountForm.LastName"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AccountForm.Email">Email</label>
+                        <input type="email" asp-for="AccountForm.Email" class="form-control" placeholder="Email">
+                        <span class="label label-warning" asp-validation-for="AccountForm.Email"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-default" asp-page-handler="update">Update</button>
+
+                </form>
+
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Change Password</div>
+            <div class="panel-body">
+
+                <form method="post">
+
+                    <div class="form-group">
+                        <label asp-for="ChangePasswordForm.Password">Current Password</label>
+                        <input type="password" asp-for="ChangePasswordForm.Password" class="form-control" placeholder="Current Password">
+                        <span class="label label-warning" asp-validation-for="ChangePasswordForm.Password"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ChangePasswordForm.NewPassword">New Password</label>
+                        <input type="password" asp-for="ChangePasswordForm.NewPassword" class="form-control" placeholder="New Password">
+                        <span class="label label-warning" asp-validation-for="ChangePasswordForm.NewPassword"></span>
+                        <span class="help-block">
+                            Passwords must be between 6 and 15 characters and contain:
+                            <br />1 upper case letter
+                            <br />1 lower case letter
+                            <br />1 number
+                        </span>
+                    </div>
+
+                    <button type="submit" class="btn btn-default" asp-page-handler="changepassword">Change</button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Your Subscription</div>
+            <div class="panel-body">
+
+                <form method="post">
+                    <p>Your subscription <b>@Model.SubscriptionReference</b> expires in <b>@Model.SubscriptionDaysRemaining days</b>.</p>
+                    <p>You can cancel your subscription at any time and all of personal information held by Discovered Insights will be deleted. Please note that cancelling does not result in any money being refunded.</p>
+
+                    <button type="submit" class="btn btn-default" asp-page-handler="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Communication Preferences</div>
+            <div class="panel-body">
+
+                <form method="post">
+                    <p>We would like to send you emails such as notifications about new features, special offers, or additional insights.</p>
+                    <p>Please let us know if you would like to receive these emails by selecting from the following two options.</p>
+
+                    <div class="form-group">
+
+                        <div class="radio">
+                            <label>
+                                <input type="radio" asp-for="CommunicationPreferencesForm.IsOkay" value="true" />
+                                Yes, I would like to receive these emails
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" asp-for="CommunicationPreferencesForm.IsOkay" value="false" />
+                                No, I would prefer not to receive these emails
+                            </label>
+                        </div>
+
+                        <span class="label label-warning" asp-validation-for="CommunicationPreferencesForm.IsOkay"></span>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-default" asp-page-handler="savepreferences">Save</button>
+
+                    <p><small><br/>This does not include emails concerning your subscription such as renewals.</small></p>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+    $(function () { // Set the appropriate nav item to active
+        $($(".nav:nth-child(2)").find("li").get(2)).addClass("active");
+    });
+    </script>
+}
