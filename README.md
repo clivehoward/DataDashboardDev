@@ -2,6 +2,14 @@
 
 This solution was released as Discovered Insights and ran for a couple of years as a live subscription service. Subscribers were able to access data gathered from a variety of quantitative studies, visualised as charts from which they could gain insight into topics of interest. The data could be custom queried and charts could be exported for use in documents.
 
+Here are some screenshots of the Data Dashboard:
+
+![alt text](https://github.com/clivehoward/DataDashboardDev/blob/master/DataDashboardWeb/wwwroot/images/Screenshot%20-1.png?raw=true)
+![alt text](https://github.com/clivehoward/DataDashboardDev/blob/master/DataDashboardWeb/wwwroot/images/Screenshot%20-2.png?raw=true)
+![alt text](https://github.com/clivehoward/DataDashboardDev/blob/master/DataDashboardWeb/wwwroot/images/Screenshot%20-3.png?raw=true)
+
+The web app also has a secure admin area for managing subscriptions and handling purchase options such as discount codes.
+
 ## Technology
 
 The solution contains several projects created using .NET Framework 4.7 and .NET Core 2.0. The solution was deployed to Microsoft Azure using two Azure App Services and an Azure Function connected to a Queue.
