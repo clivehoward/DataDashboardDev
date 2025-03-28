@@ -1,6 +1,8 @@
 # Data Dashboard
 
-This solution was released as Discovered Insights and ran for a couple of years as a live subscription service. Subscribers were able to access data gathered from a variety of quantitative studies, visualised as charts from which they could gain insight into topics of interest. The data could be custom queried and charts could be exported for use in documents.
+This solution was released as Discovered Insights and ran for a couple of years as a live subscription service. Subscribers were able to access data gathered from a variety of quantitative studies, visualised as charts with tabular data from which they could gain insight into topics of interest. The data could be custom queried and charts could be exported for use in documents.
+
+I created this while working for Creative Intellect Consulting. It was my idea to realise greater value from the data we collected through various studies, and to give clients greater flexibility over access and use of data for their own internal purposes.
 
 Here are some screenshots of the Data Dashboard:
 
@@ -12,7 +14,7 @@ The web app also has a secure admin area for managing subscriptions and handling
 
 ## Technology
 
-The solution contains several projects created using .NET Framework 4.7 and .NET Core 2.0. The solution was deployed to Microsoft Azure using two Azure App Services and an Azure Function connected to a Queue.
+The solution contains several projects created using .NET Framework 4.7 and .NET Core 2.0. The solution was deployed to Microsoft Azure using two Azure App Services and an Azure Function connected to a Queue. Data was stored in an Azure SQL Server database.
 
 ## Applications
 
@@ -56,10 +58,15 @@ This is used to send emails.
 #### Application Insights
 This is used to monitor the solution.
 
+#### ChartJS
+This is used to create charts in the Data Dashboard Web App.
+
 ## Deployment
 
 The solution was deployed to Azure using Azure DevOps. The deployment process was automated using Azure DevOps pipelines.
 
 ## Notes
 
-This solution was designed and created by myself and is here simply as an example of previous work. It is no longer being used commercially and there is no data stored in this solution.
+This solution was designed, architected, and created by myself. I also created separate tooling for ingesting study data collected in a variety of formats into the SQL database used by the dashboard. 
+
+This solution is here simply as an example of previous work. It is no longer being used commercially or maintained and there is no data stored in this solution.
